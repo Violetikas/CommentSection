@@ -1,0 +1,10 @@
+{
+    "name": "violetatamasauskiene/comment-section-task",
+    "type": "project",
+    "require": {
+        "psr/log": "^1.1"
+    },
+    "autoload": {
+        "psr-4": {"Orca\\": "src/"}
+    }
+}
