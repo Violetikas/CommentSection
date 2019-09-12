@@ -24,13 +24,14 @@ class ContentRepository
         return $this->manager->lastInsertId();
     }
 
-    public function getComment()
+    public function getAll()
     {
         $sql = "SELECT * FROM comment ORDER BY date";
         $stmt = $this->manager->prepare($sql);
         $stmt->execute();
 
         return $stmt->fetchAll();
+        // TODO: group by top level comments
     }
 
     public function fetchComment($commentId)

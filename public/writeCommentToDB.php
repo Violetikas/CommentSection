@@ -8,12 +8,12 @@ $mail = $_POST['mail'];
 
 $saveComment = new \Orca\Repository\ContentRepository();
 
-$commentId = $saveComment->saveComment($name, $comment, $mail);
-$comment = $saveComment->fetchComment($commentId);
+if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
+    $commentId = $saveComment->saveComment($name, $comment, $mail);
+    $comment = $saveComment->fetchComment($commentId);
 
-?>
-<div>
-    <?php echo $comment['name']; ?>
-    <?php echo $comment['date']; ?>
-    <?php echo $comment['comment']; ?>
-</div>
+// TODO: render child differently
+    require __DIR__ . '/../views/comment.php';
+} else {
+    echo "<h2>Please insert a valid email address</h2>";
+}

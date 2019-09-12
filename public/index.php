@@ -3,7 +3,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 $getComment = new \Orca\Repository\ContentRepository();
 
-$comments = $getComment->getComment();
+$comments = $getComment->getAll();
 
 ?>
 <!DOCTYPE html>
@@ -17,39 +17,15 @@ $comments = $getComment->getComment();
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<div class="commentSection container-fluid">
+<div class="commentSection container-fluid mb-5">
     <h2 id="cont" class="commentTitle">Comment form</h2>
-    <form class="comment-form" method="post" action="writeCommentToDB.php">
-        <div class="form-row">
-
-            <div class="col">
-                <label for="mail">Email*</label>
-                <input type="email" class="form-control" name="mail" id="mail" required>
-            </div>
-
-            <div class="col">
-                <label for="name">Name*</label>
-                <input type="text" class="form-control" name="name" id="name" required>
-            </div>
-        </div>
-        <span class="form-group">
-            <label for="content">Comment*</label>
-            <textarea name="comment" class="form-control" id="content" rows="3" required></textarea>
-        </span class="form-group"><br>
-        <input id="submit" class="btn btn-light" type="submit">
-    </form>
+    <?php require __DIR__ . '/../views/form.php'; ?>
 </div>
-<?php if ($comments) : ?>
-<div class="">
-    <?php foreach ($comments as $comment): ?>
-        <div>
-            <?php echo $comment['name']; ?>
-            <?php echo $comment['date']; ?>
-            <?php echo $comment['comment']; ?>
-        </div>
-    <?php endforeach; ?>
+<div class="comment-list">
+    <?php foreach ($comments as $comment) {
+        require __DIR__ . '/../views/comment.php';
+    } ?>
     <div class="comment-placeholder"></div>
 </div>
-<?php endif; ?>
 <script src="js/javascript.js"></script>
 </body>
