@@ -53,3 +53,4 @@ Array.prototype.forEach.call(
     document.querySelectorAll('[data-comment-id]'),
     activateCommentInlineForm
 );
+

@@ -19,5 +19,8 @@ if (filter_var($mail, FILTER_VALIDATE_EMAIL)) {
         require __DIR__ . '/../views/comment.php';
     }
 } else {
-    echo "<div class=\"alert alert-primary\">Please submit a valid email address</div>";
+    echo
+    "<div id='allert' class=\"alert alert-primary\" role=\"alert\" style='position:fixed; top:0;z-index:999'>
+Please submit a valid email address
+</div>";
 }
