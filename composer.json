@@ -2,7 +2,8 @@
     "name": "violetatamasauskiene/comment-section-task",
     "type": "project",
     "require": {
-        "psr/log": "^1.1"
+        "psr/log": "^1.1",
+        "ezyang/htmlpurifier": "^4.11"
     },
     "autoload": {
         "psr-4": {"Orca\\": "src/"}

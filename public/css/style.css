@@ -1,3 +1,9 @@
 
+.card{
+    background-color: #dddddd;
+}
 
-
+.card-reply{
+    size: 70em;
+    background-color: #dddddd;
+}
