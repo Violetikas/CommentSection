@@ -22,7 +22,7 @@ $comments = $getComment->getAll();
     <?php require __DIR__ . '/../views/form.php'; ?>
 </div>
 <div class="comment-list">
-    <?php foreach ($comments as $comment) {
+    <?php foreach ($comments[null] as $comment) {
         require __DIR__ . '/../views/comment.php';
     } ?>
     <div class="comment-placeholder"></div>

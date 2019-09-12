@@ -15,12 +15,12 @@ class ContentRepository
     }
 
 
-    public function saveComment($name, $comment, $mail)
+    public function saveComment($name, $parentCommentId, $comment, $mail)
     {
-        $sql = "INSERT INTO comment (name, comment, mail, date)
-    VALUES (?, ?, ?, now() )";
+        $sql = "INSERT INTO comment (name, parent_comment_id, comment, mail, date)
+    VALUES (?, ?, ?, ?, now() )";
         $stmt = $this->manager->prepare($sql);
-        $stmt->execute([$name, $comment, $mail]);
+        $stmt->execute([$name, $parentCommentId, $comment, $mail]);
         return $this->manager->lastInsertId();
     }
 
@@ -30,8 +30,13 @@ class ContentRepository
         $stmt = $this->manager->prepare($sql);
         $stmt->execute();
 
-        return $stmt->fetchAll();
-        // TODO: group by top level comments
+        $grouped = [null => []];
+
+        foreach ($stmt as $comment) {
+            $grouped[$comment['parent_comment_id']][] = $comment;
+        }
+
+        return $grouped;
     }
 
     public function fetchComment($commentId)
